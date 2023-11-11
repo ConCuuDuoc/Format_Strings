@@ -138,7 +138,7 @@ OR can look like this:
 +------------+------------------+
 | Address    | Value            |
 +------------+------------------+
-| 0xffffd000 | 0xffffd010       | --> esp (story variable)
+| 0xffffd000 | 0xffffd010       | --> esp (address of 'story' variable - parameter of the printf function)
 | 0xffffd004 | 0xffffd010       |  1
 | 0xffffd008 | 0xf7d86374       |  2
 | 0xffffd00c | 0x0804928e       |  3
