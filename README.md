@@ -136,7 +136,7 @@ Breakpoint 1, 0x080492c8 in vuln() ()
 - From the current the stack frame that esp point to (0x0804a093) the stack frame of FLAG (0xffffd090) need 20 stack frame including the FLAG stackframe. So we can use this payload to leak the FLAG: "%20$s"
 ```c
 % : This marks the beginning of a format specifier.
-24 : This is a positional argument specifier. It means that printf should use the 24th argument in the list provided to it.
+24 : This is a positional argument specifier. It means that printf should use the 20th argument in the list provided to it.
 $ : This is used in conjunction with the positional argument specifier. It's what differentiates a positional argument specifier from a width specifier.
 s : This indicates that the argument is expected to be a string (char *).
 So, when you use %20$s in printf, the function will expect at least 20 arguments to be passed to it, and it will print the 20th argument assuming it's a string. If there are fewer than 20 arguments provided, or if the 20th argument is not a string, this will likely result in undefined behavior, such as a crash or printing garbage data, because printf will try to access memory that it shouldn't.
