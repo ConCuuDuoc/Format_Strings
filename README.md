@@ -56,7 +56,16 @@ int main(int argc, char **argv){
 }
 ```
 - Checksec:
-
+```c
+mera@Admin:/mnt/d/LTAT$ checksec chall
+[*] '/mnt/d/LTAT/chall'
+    Arch:     i386-32-little
+    RELRO:    Partial RELRO
+    Stack:    No canary found
+    NX:       NX disabled
+    PIE:      No PIE (0x8048000)
+    RWX:      Has RWX segments
+```
 
 - No PIE enable. Easily see the format-string-vulnerability on vuln function by calling to printf(story) without any format string arguments
 - Step 1: Check the FLAG frame in stack
